@@ -1,5 +1,5 @@
 # Circular Buffer
-This repository contains a circular buffer or a ring buffer implementation in C code suitable for embedded systems. The implementation using a single empty cell to detect the buffer "full" case; for supporting a single producer thread and single consumer thread without OS lock primitive. The code follows the Google C++ Style Guide with one exception that instead of 2 spaces it use 4 spaces.
+This repository contains a circular buffer or a ring buffer implementation in C code suitable for embedded systems. The implementation using a single empty cell to detect the buffer "full" case; for supporting a single producer thread and single consumer thread without OS lock primitive. For use of efficient algorithms the maximum number of elements in the circular buffer must be a power of 2. The code follows the Google C++ Style Guide with one exception that instead of 2 spaces it use 4 spaces.
 
 ## Unittest
 

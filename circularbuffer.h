@@ -33,9 +33,9 @@
  *
  * This circular buffer implementation uses a single empty cell to detect the
  * "full" case for supporting thread safety, meaning it support one producer and
- * one consumer without a lock. For the possibility to use efficient algorithms
- * the maximum number of elements in the circular buffer must be a power of 2. The
- * circular buffer hold as most ((buf_size / element_size) - 1) elements.
+ * one consumer without a lock. The circular buffer therefore hold as most
+ * ((buf_size / element_size) - 1) elements. For use of efficient algorithms the
+ * maximum number of elements in the circular buffer must be a power of 2.
  */
 
 #ifndef CIRCULARBUFFER_H_
