@@ -1,0 +1,25 @@
+# Import environment
+Import('env')
+
+# Clone environment
+env = env.Clone()
+
+# Add compiler flags
+env.AppendUnique(CCFLAGS = ['-O0', '-g'])
+
+# Build the test object
+lib = []
+
+lib += SConscript('../SConscript', variant_dir='libcbuf', duplicate=0, exports='env')
+
+# Link needed libraries
+env.Prepend(LIBS = [lib, 'gtest', 'pthread'], LIBPATH = ['../../build_gtest/lib/'])
+
+# Add include path for the Google test
+env.Append(CCFLAGS=('-isystem', '../googletest/googletest/include'))
+
+# Build the unittest
+program = env.Program('circularbuffer-gtest', 'circularbuffer-gtest.cc')
+
+# Return result to SConstruct
+Return('program')
