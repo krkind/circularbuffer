@@ -36,10 +36,12 @@
 /* **** Includes **** */
 
 #include "circularbuffer.h"
-#include <assert.h>
 #include <string.h>
+#include <assert.h>
 
 /* **** Defines **** */
+
+#define ASSERT(expr)     assert(expr)
 
 /* **** Typedefs **** */
 
@@ -55,14 +57,14 @@
 
 void CircularBufferInit(CircularBufferContext *ctx, void *buf, size_t buf_size,
                         size_t element_size) {
-    assert(ctx);
-    assert(buf);
-    assert(buf_size);
-    assert(element_size);
+    ASSERT(ctx);
+    ASSERT(buf);
+    ASSERT(buf_size);
+    ASSERT(element_size);
 
     const size_t size = buf_size / element_size;
 
-    assert((size & (size - 1u)) == 0u);
+    ASSERT((size & (size - 1u)) == 0u);
 
     ctx->buf = buf;
     ctx->write_pos = 0u;
@@ -72,15 +74,15 @@ void CircularBufferInit(CircularBufferContext *ctx, void *buf, size_t buf_size,
 }
 
 void CircularBufferClear(CircularBufferContext *ctx) {
-    assert(ctx);
+    ASSERT(ctx);
 
     ctx->write_pos = 0u;
     ctx->read_pos = 0u;
 }
 
 int32_t CircularBufferPushBack(CircularBufferContext *ctx, const void *val) {
-    assert(ctx);
-    assert(val);
+    ASSERT(ctx);
+    ASSERT(val);
 
     const size_t write_pos = (ctx->write_pos + 1) & ctx->max_size;
 
@@ -100,8 +102,8 @@ fail:
 }
 
 int32_t CircularBufferPopFront(CircularBufferContext *ctx, void *val) {
-    assert(ctx);
-    assert(val);
+    ASSERT(ctx);
+    ASSERT(val);
 
     // Check if empty
     if (ctx->read_pos == ctx->write_pos) {
@@ -121,7 +123,7 @@ fail:
 
 int32_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num,
                            void **elem) {
-    assert(ctx);
+    ASSERT(ctx);
 
     const size_t write_pos = ctx->write_pos;
     const size_t read_pos = ctx->read_pos;
@@ -143,19 +145,19 @@ fail:
 }
 
 size_t CircularBufferSize(const CircularBufferContext *ctx) {
-    assert(ctx);
+    ASSERT(ctx);
 
     return ((ctx->write_pos - ctx->read_pos) & ctx->max_size);
 }
 
 size_t CircularBufferSpace(const CircularBufferContext *ctx) {
-    assert(ctx);
+    ASSERT(ctx);
 
     return (ctx->max_size - CircularBufferSize(ctx));
 }
 
 bool CircularBufferEmpty(const CircularBufferContext *ctx) {
-    assert(ctx);
+    ASSERT(ctx);
 
     return (ctx->read_pos == ctx->write_pos);
 }
