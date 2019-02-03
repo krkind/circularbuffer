@@ -73,15 +73,26 @@ typedef struct {
  * The max number of elements in the circular buffer is
  * (buf_size / element_size) - 1.
  *
+ * Asserts:
+ *      'ctx' is not NULL.
+ *      'buf' is not NULL.
+ *      'buf_size' is not 0
+ *      'element_size' is not 0
+ *      'buf_size / element_size' is not power of 2.
+ *
  * \param[out]  *ctx            Pointer to the circular buffer context.
- * \param[in]   buf_size        The circular buffer size.
- * \param[in]   element_size    The size of an element in the circular buffer.
+ * \param[in]   buf             Pointer to a buffer.
+ * \param[in]   buf_size        The buffer size.
+ * \param[in]   element_size    The size of an element in the buffer.
  */
 void CircularBufferInit(CircularBufferContext *ctx, void *buf, size_t buf_size,
                         size_t element_size);
 
 /*!
  * \breif Removes all elements from the circular buffer.
+ *
+ * Asserts:
+ *      'ctx' is not NULL.
  *
  * \param[out]  *ctx            Pointer to the circular buffer context.
  */
@@ -90,6 +101,10 @@ void CircularBufferClear(CircularBufferContext *ctx);
 /*!
  * \breif Adds an new element to the end of the buffer. The "val" content is
  * copied to the element.
+ *
+ * Asserts:
+ *      'ctx' is not NULL.
+ *      'val' is not NULL.
  *
  * \param[out]  *ctx            Pointer to the circular buffer context.
  * \param[in]   val             Pointer to the source to be copied.
@@ -101,7 +116,9 @@ int32_t CircularBufferPushBack(CircularBufferContext *ctx, const void *val);
  * \breif Removes the first element from the buffer. Copies the element content
  * to the "val" destination.
  *
- * Asserts if the "val" == NULL.
+ * Asserts:
+ *      'ctx' is not NULL.
+ *      'val' is not NULL.
  *
  * \param[out]  *ctx            Pointer to the circular buffer context.
  * \param[out]  *val            Pointer to the destination where the data is to
@@ -117,17 +134,23 @@ int32_t CircularBufferPopFront(CircularBufferContext *ctx, void *val);
  * The "num" argument shall be less than the number of elements added to the
  * buffer.
  *
+ * Asserts:
+ *      'ctx' is not NULL.
+ *
  * \param[in]   *ctx            Pointer to the circular buffer context.
  * \param[in]   num             The number of the element to peek.
- * \param[out]  elem            Pointer to the "num" element.
+ * \param[out]  elem            Pointer to the 'num' element.
  * \return                      0 if success, -1 or NULL buffer is empty or the
- * "num" is out of bounds.
+ *                              'num' is out of bounds.
  */
 int32_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num,
                            void **elem);
 
 /*!
  * \breif Gets the number of added elements in the buffer.
+ *
+ * Asserts:
+ *      'ctx' is not NULL.
  *
  * \param[in] *ctx              Pointer to the circular buffer context.
  * \return                      The number of added elements.
@@ -137,6 +160,9 @@ size_t CircularBufferSize(const CircularBufferContext *ctx);
 /*!
  * \breif Gets the number of free elements in the buffer.
  *
+ * Asserts:
+ *      'ctx' is not NULL.
+ *
  * \param[in] *ctx              Pointer to the circular buffer context.
  * \return                      The number of free elements.
  */
@@ -144,6 +170,9 @@ size_t CircularBufferSpace(const CircularBufferContext *ctx);
 
 /*!
  * \breif Checks if the buffer is empty.
+ *
+ * Asserts:
+ *      'ctx' is not NULL.
  *
  * \param[in] *ctx              Pointer to the circular buffer context.
  * \return                      true if the buffer is empty otherwise false.
