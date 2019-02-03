@@ -1,5 +1,5 @@
 # Import environment
-Import('env')
+Import('env', 'mode')
 
 # Add include file absolute path
 env.Append(CPPPATH = [env.Dir('.').abspath])
@@ -9,6 +9,9 @@ env = env.Clone()
 
 # Add specific compiler flags
 env.AppendUnique(CCFLAGS = ['-std=c99'])
+
+if mode == 'test':
+  env.AppendUnique(CCFLAGS = ['--coverage'])
 
 # Point out all source files
 src = env.Split('''
