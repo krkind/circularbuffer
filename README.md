@@ -45,3 +45,21 @@ The added unittest uses the googletest framework and the SCons build system.
    ```<your path>/circularbuffer$ ./build/circularbuffer-gtest```
 
    ```<your path>/circularbuffer$ scons -c```
+
+### Follow the steps below for generate code coverage report
+
+1. Install the lcov, if you run on an Ubuntu machine:
+
+   ```sudo apt install lcov```
+
+2. Generate report:
+
+   ```<your path>/circularbuffer$ ./gen_test_report.sh```
+
+3. Html output result is found here
+
+   ```<your path>/circularbuffer/build/out$```
+
+4. Delete report:
+
+   ```<your path>/circularbuffer$ ./gen_test_report.sh -c```
