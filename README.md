@@ -26,7 +26,7 @@ The added unittest uses the googletest framework and the SCons build system.
 
 6. Build the google test framework:
 
-   ```<your path>/build_gtest$ cmake ../googletest/googletest/```
+   ```<your path>/build_gtest$ cmake ../googletest/```
 
    ```<your path>/build_gtest$ make```
 
