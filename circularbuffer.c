@@ -106,7 +106,6 @@ int32_t CircularBufferPopFront(CircularBufferContext *ctx, void *val) {
     }
 
     memcpy(val, &ctx->buf[ctx->read_pos * ctx->element_size], ctx->element_size);
-
     ctx->read_pos = (ctx->read_pos + 1) & ctx->max_size;
 
     goto success;
