@@ -75,6 +75,7 @@ int32_t CircularBufferPushBack(CircularBufferContext *ctx, const void *val) {
     ASSERT(ctx);
     ASSERT(val);
 
+    int32_t retval = 0;
     const size_t write_pos = (ctx->write_pos + 1) & ctx->max_size;
 
     // Check if full
@@ -85,15 +86,19 @@ int32_t CircularBufferPushBack(CircularBufferContext *ctx, const void *val) {
     memcpy(&ctx->buf[ctx->write_pos * ctx->element_size], val, ctx->element_size);
     ctx->write_pos = write_pos;
 
-    return 0;
+    goto success;
 
 fail:
-    return -1;
+    retval = -1;
+success:
+    return retval;
 }
 
 int32_t CircularBufferPopFront(CircularBufferContext *ctx, void *val) {
     ASSERT(ctx);
     ASSERT(val);
+
+    int32_t retval = 0;
 
     // Check if empty
     if (ctx->read_pos == ctx->write_pos) {
@@ -104,15 +109,18 @@ int32_t CircularBufferPopFront(CircularBufferContext *ctx, void *val) {
 
     ctx->read_pos = (ctx->read_pos + 1) & ctx->max_size;
 
-    return 0;
+    goto success;
 
 fail:
-    return -1;
+    retval = -1;
+success:
+    return retval;
 }
 
 int32_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num, void **elem) {
     ASSERT(ctx);
 
+    int32_t retval = 0;
     const size_t write_pos = ctx->write_pos;
     const size_t read_pos = ctx->read_pos;
     const size_t size = ((write_pos - read_pos) & ctx->max_size);
@@ -126,10 +134,12 @@ int32_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num, void **
     const size_t element_pos = ((read_pos + num) & ctx->max_size);
     *elem = &ctx->buf[element_pos * ctx->element_size];
 
-    return 0;
+    goto success;
 
 fail:
-    return -1;
+    retval = -1;
+success:
+    return retval;
 }
 
 size_t CircularBufferSize(const CircularBufferContext *ctx) {
