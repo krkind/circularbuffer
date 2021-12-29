@@ -22,15 +22,15 @@
  * SOFTWARE.
  */
 
-/*!
- * \addtogroup CIRCULARBUFFER
- * \{
+/**
+ * @addtogroup CIRCULARBUFFER
+ * @{
  *
- * \file        circularbuffer.c
+ * @file        circularbuffer.c
  *
- * \brief       A circular buffer implementation.
+ * @brief       A circular buffer implementation.
  *
- * \}
+ * @}
  */
 
 /* **** Includes **** */
@@ -42,16 +42,6 @@
 /* **** Defines **** */
 
 #define ASSERT(expr)     assert(expr)
-
-/* **** Typedefs **** */
-
-/* **** Static Function Declarations **** */
-
-/* **** Static Variables **** */
-
-/* **** Global Variables **** */
-
-/* **** Static Function Definitions **** */
 
 /* **** Function Definitions **** */
 
