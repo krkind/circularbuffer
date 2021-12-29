@@ -36,12 +36,13 @@
 /* **** Includes **** */
 
 #include "circularbuffer.h"
-#include <string.h>
+
 #include <assert.h>
+#include <string.h>
 
 /* **** Defines **** */
 
-#define ASSERT(expr)     assert(expr)
+#define ASSERT(expr) assert(expr)
 
 /* **** Function Definitions **** */
 
@@ -81,8 +82,7 @@ int32_t CircularBufferPushBack(CircularBufferContext *ctx, const void *val) {
         goto fail;
     }
 
-    memcpy(&ctx->buf[ctx->write_pos * ctx->element_size], val,
-           ctx->element_size);
+    memcpy(&ctx->buf[ctx->write_pos * ctx->element_size], val, ctx->element_size);
     ctx->write_pos = write_pos;
 
     return 0;
@@ -100,8 +100,7 @@ int32_t CircularBufferPopFront(CircularBufferContext *ctx, void *val) {
         goto fail;
     }
 
-    memcpy(val, &ctx->buf[ctx->read_pos * ctx->element_size],
-           ctx->element_size);
+    memcpy(val, &ctx->buf[ctx->read_pos * ctx->element_size], ctx->element_size);
 
     ctx->read_pos = (ctx->read_pos + 1) & ctx->max_size;
 
@@ -111,8 +110,7 @@ fail:
     return -1;
 }
 
-int32_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num,
-                           void **elem) {
+int32_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num, void **elem) {
     ASSERT(ctx);
 
     const size_t write_pos = ctx->write_pos;

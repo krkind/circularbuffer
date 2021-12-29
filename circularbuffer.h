@@ -64,7 +64,7 @@ typedef struct {
 /* **** Function Declarations **** */
 
 /**
- * @breif Initializes the circular buffer context.
+ * @brief Initializes the circular buffer context.
  *
  * The max number of elements in the circular buffer is
  * (buf_size / element_size) - 1.
@@ -85,7 +85,7 @@ void CircularBufferInit(CircularBufferContext *ctx, void *buf, size_t buf_size,
                         size_t element_size);
 
 /**
- * @breif Removes all elements from the circular buffer.
+ * @brief Removes all elements from the circular buffer.
  *
  * Asserts if:
  *      'ctx' is NULL.
@@ -95,7 +95,7 @@ void CircularBufferInit(CircularBufferContext *ctx, void *buf, size_t buf_size,
 void CircularBufferClear(CircularBufferContext *ctx);
 
 /**
- * @breif Adds an new element to the end of the buffer. The "val" content is
+ * @brief Adds an new element to the end of the buffer. The "val" content is
  * copied to the element.
  *
  * Asserts if:
@@ -109,7 +109,7 @@ void CircularBufferClear(CircularBufferContext *ctx);
 int32_t CircularBufferPushBack(CircularBufferContext *ctx, const void *val);
 
 /**
- * @breif Removes the first element from the buffer. Copies the element content
+ * @brief Removes the first element from the buffer. Copies the element content
  * to the "val" destination.
  *
  * Asserts if:
@@ -125,7 +125,7 @@ int32_t CircularBufferPushBack(CircularBufferContext *ctx, const void *val);
 int32_t CircularBufferPopFront(CircularBufferContext *ctx, void *val);
 
 /**
- * @breif Peeks the "num" element from the buffer.
+ * @brief Peeks the "num" element from the buffer.
  *
  * The "num" argument shall be less than the number of elements added to the
  * buffer.
@@ -139,11 +139,10 @@ int32_t CircularBufferPopFront(CircularBufferContext *ctx, void *val);
  * @return                      0 if success, -1 or NULL buffer is empty or the
  *                              'num' is out of bounds.
  */
-int32_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num,
-                           void **elem);
+int32_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num, void **elem);
 
 /**
- * @breif Gets the number of added elements in the buffer.
+ * @brief Gets the number of added elements in the buffer.
  *
  * Asserts if:
  *      'ctx' is NULL.
@@ -154,7 +153,7 @@ int32_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num,
 size_t CircularBufferSize(const CircularBufferContext *ctx);
 
 /**
- * @breif Gets the number of free elements in the buffer.
+ * @brief Gets the number of free elements in the buffer.
  *
  * Asserts if:
  *      'ctx' is NULL.
@@ -165,7 +164,7 @@ size_t CircularBufferSize(const CircularBufferContext *ctx);
 size_t CircularBufferSpace(const CircularBufferContext *ctx);
 
 /**
- * @breif Checks if the buffer is empty.
+ * @brief Checks if the buffer is empty.
  *
  * Asserts if:
  *      'ctx' is NULL.
